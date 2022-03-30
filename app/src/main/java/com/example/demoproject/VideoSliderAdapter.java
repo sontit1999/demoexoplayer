@@ -1,5 +1,7 @@
 package com.example.demoproject;
 
+import static com.google.android.exoplayer2.Player.REPEAT_MODE_ALL;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -119,7 +121,9 @@ public class VideoSliderAdapter extends RecyclerView.Adapter<VideoSliderAdapter.
                 MediaItem mediaItem = MediaItem.fromUri(videoUri);
                 holder.simpleExoPlayer.setMediaItem(mediaItem);
                 holder.simpleExoPlayer.prepare();
+                holder.simpleExoPlayer.setRepeatMode(REPEAT_MODE_ALL);
                 holder.simpleExoPlayer.play();
+                holder.isPlaying = true;
             }
         });
 
@@ -148,6 +152,7 @@ public class VideoSliderAdapter extends RecyclerView.Adapter<VideoSliderAdapter.
         SimpleExoPlayer simpleExoPlayer;
         ProgressBar progressBar;
         LinearLayout sec_mid, sec_bottom;
+        boolean isPlaying = false;
 
         public ViewHolder(@NonNull View view) {
             super(view);
